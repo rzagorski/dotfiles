@@ -58,7 +58,6 @@ class Install(Actions):
             for single_directory in directories:
                 if os.path.exists(os.path.abspath(single_directory) + "/install"):
                     sys.path.append(os.path.abspath(single_directory + "/install"))
-                    # print sys.path
                 else:
                     sys.stdout.write("No dotfiles directory in: %s" % os.path.abspath(single_directory))
                     return False
@@ -187,7 +186,6 @@ class Symlink(Actions):
         '''
         Execute command
         '''
-        print single_directory
         if what_to_do == "all" and os.path.exists(os.path.abspath(single_directory)):
             sys.stdout.write("Files from directory: ")
             sys.stdout.write(Colors.HEADER)

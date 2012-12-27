@@ -1,10 +1,10 @@
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export PATH
 
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,hosts}; do
     [ -r "$file" ] && source "$file"
 done
 
-if [[ -e /usr/local/etc/bash_completion ]]; then
-    source /usr/local/etc/bash_completion
-fi
+# if [[ -e /usr/local/etc/bash_completion ]]; then
+    # source /usr/local/etc/bash_completion
+# fi
