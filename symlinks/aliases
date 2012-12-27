@@ -1,0 +1,10 @@
+# ls aliases
+alias ll='ls -lahG'
+alias l='ls'
+
+
+
+# application aliases
+if [[ -e '/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl' ]]; then
+    alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
+fi

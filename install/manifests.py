@@ -21,28 +21,54 @@ manifests.append({
 })
 
 manifests.append({
-    'name' : 'configobj',
-    'check' : '/Library/Python/2.7/site-packages/configobj.py',
-    'install' : 'sudo pip install configobj',
-})
-
-manifests.append({
     'name' : 'bash',
     'install' : 'brew install bash',
 })
 
 manifests.append({
-    'name' : 'bash-completion',
-    'check' : '/usr/local/etc/bash_completion',
-    'install' : 'brew install bash-completion',
+    'name' : 'homebrew/versions',
+    'check' : '/usr/local/Library/Taps/homebrew-versions',
+    'install' : 'brew tap homebrew/versions',
+})
+
+manifests.append({
+    'name' : 'bash-completion2',
+    'check' : '/usr/local/share/bash-completion/bash_completion',
+    'install' : 'brew install bash-completion2'
 })
 
 manifests.append({
     'name' : 'git',
-    'install' : 'brew install git',
+    'install' : 'brew install git'
+})
+
+manifests.append({
+    'name' : 'git-extras',
+    'install' : 'brew install git-extras'
 })
 
 manifests.append({
     'name' : 'htop',
-    'install' : 'brew install htop-osx',
+    'install' : 'brew install htop-osx'
+})
+
+manifests.append({
+    'name' : 'mosh',
+    'install' : 'brew install mosh'
+})
+
+manifests.append({
+    'name' : 'ack',
+    'install' : 'brew install ack'
+})
+
+manifests.append({
+    'name' : 'node',
+    'install' : 'brew install node'
+})
+
+manifests.append({
+    'name' : 'jshint',
+    'check' : '/usr/local/share/npm/bin/jshint',
+    'install' : 'npm install jshint'
 })

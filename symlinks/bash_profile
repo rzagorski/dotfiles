@@ -1,10 +1,33 @@
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,hosts}; do
+    if [[ -r "$file" ]]; then
+        source "$file"
+    fi
+done
+unset file
+
+# yup I don't like vim
+export EDITOR=pico
+
+# /usr/local/bin before /usr/bin
+PATH=/usr/local/bin:/usr/local/share/npm/bin:$(path_remove /usr/local/bin)
 export PATH
 
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,hosts}; do
-    [ -r "$file" ] && source "$file"
-done
+export NODE_PATH="/usr/local/lib/node"
 
-# if [[ -e /usr/local/etc/bash_completion ]]; then
-    # source /usr/local/etc/bash_completion
-# fi
+if [[ -f $(brew --prefix)/share/bash-completion/bash_completion ]]; then
+    . $(brew --prefix)/share/bash-completion/bash_completion
+fi
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+shopt -s dirspell
+
+# Just type directory without the cd
+shopt -s autocd
+
+shopt -s histappend
+shopt -s checkwinsize
+
+# Show some colors ls
+export CLICOLOR=1
+export LSCOLORS=cxfxcxdxbxegedabagacad

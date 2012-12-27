@@ -18,6 +18,8 @@ except:
 
 directories = []
 
+ignore_files = ['.DS_Store']
+
 class Actions(argparse.Action):
     '''
     Base class for all automated stuff.
@@ -213,6 +215,9 @@ class Symlink(Actions):
         sys.stdout.flush()
 
         for single_symlink in os.listdir(single_directory):
+            if single_symlink in ignore_files:
+                continue
+
             sys.stdout.write(Colors.WARNING)
             sys.stdout.write(single_symlink + " "*(20-len(single_symlink)))
             sys.stdout.write(Colors.ENDC)
@@ -224,6 +229,7 @@ class Symlink(Actions):
                 sys.stdout.write("True")
             else:
                 sys.stdout.write("False")
+
             sys.stdout.write("\n")
             sys.stdout.flush()
 
@@ -231,12 +237,17 @@ class Symlink(Actions):
         '''
         Install packages. Single or all from manifests.
         '''
-
         if symlink_name is None:
             for single_symlink in os.listdir(single_directory):
+                if single_symlink in ignore_files:
+                    continue
+
                 self.symlink_single_file("%s/%s" % (single_directory, single_symlink), single_symlink)
         else:
             for single_symlink in os.listdir(single_directory):
+                if single_symlink in ignore_files:
+                    continue
+                    
                 if single_symlink == symlink_name:
                     self.symlink_single_file("%s/%s" % (single_directory, single_symlink), single_symlink)
                 

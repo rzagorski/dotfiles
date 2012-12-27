@@ -49,3 +49,6 @@
     sa = stash apply
     ss = stash save
     sp = stash pop
+
+[core]
+    excludesfile = ~/.gitignore
