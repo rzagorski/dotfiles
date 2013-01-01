@@ -72,3 +72,13 @@ manifests.append({
     'check' : '/usr/local/share/npm/bin/jshint',
     'install' : 'npm install jshint'
 })
+
+manifests.append({
+    'name' : 'rbenv',
+    'install' : 'brew install rbenv'
+})
+
+manifests.append({
+    'name' : 'ruby-build',
+    'install' : 'brew install ruby-build'
+})

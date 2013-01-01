@@ -12,6 +12,11 @@ export EDITOR=pico
 PATH=/usr/local/bin:/usr/local/share/npm/bin:$(path_remove /usr/local/bin)
 export PATH
 
+if [[ -f $(brew --prefix)/bin/rbenv ]]; then
+    eval "$(rbenv init -)"
+    export RBENV_ROOT=/usr/local/opt/rbenv
+fi
+
 export NODE_PATH="/usr/local/lib/node"
 
 if [[ -f $(brew --prefix)/share/bash-completion/bash_completion ]]; then
