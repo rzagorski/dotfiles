@@ -10,11 +10,15 @@ export EDITOR=pico
 
 # /usr/local/bin before /usr/bin
 PATH=/usr/local/bin:/usr/local/share/npm/bin:$(path_remove /usr/local/bin)
+
+if [[ -d "$HOME/.rbenv/" ]]; then
+    PATH="$HOME/.rbenv/bin:$PATH"
+fi
+
 export PATH
 
 if [[ -f $(brew --prefix)/bin/rbenv ]]; then
     eval "$(rbenv init -)"
-    export RBENV_ROOT=/usr/local/opt/rbenv
 fi
 
 export NODE_PATH="/usr/local/lib/node"
