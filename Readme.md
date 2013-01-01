@@ -81,3 +81,7 @@ manifests.append({
     'install' : 'sudo pip install configobj --upgrade',
 })
 ```
+
+# License
+
+Licensed under the [MIT license](http://opensource.org/licenses/MIT).
