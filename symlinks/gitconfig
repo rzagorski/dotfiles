@@ -30,7 +30,7 @@
     grep = grep -Ii
     la = "!git config -l | grep alias | cut -c 7-"
 
-    st = status -s
+    st = status -sb
     cl = clone
     ci = commit
     co = checkout
