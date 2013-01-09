@@ -1,0 +1,6 @@
+set tabstospaces
+set historylog
+set noconvert
+set smooth
+set mouse
+set nohelp

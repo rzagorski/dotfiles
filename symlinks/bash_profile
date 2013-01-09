@@ -6,7 +6,8 @@ done
 unset file
 
 # yup I don't like vim
-export EDITOR=pico
+export EDITOR=nano
+export GIT_EDITOR=nano
 
 # /usr/local/bin before /usr/bin
 PATH=/usr/local/bin:/usr/local/share/npm/bin:$(path_remove /usr/local/bin)
