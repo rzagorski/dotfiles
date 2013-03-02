@@ -1,0 +1,5 @@
+# ls aliases
+alias ll='ls -lahG'
+alias l='ls'
+
+alias cp='rsync -p'

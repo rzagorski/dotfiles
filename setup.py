@@ -54,10 +54,16 @@ class Install(Actions):
 
     def run(self, namespace):
         what_to_do = namespace.install[0]
+        what_os = os.uname()[0].lower()
+
+        if os.path.exists(what_os):
+            directories.insert(0, os.path.abspath(what_os))
+
         directories.insert(0, os.path.abspath('.'))
 
         if len(directories) > 0:
             for single_directory in directories:
+
                 if os.path.exists(os.path.abspath(single_directory) + "/install"):
                     sys.path.append(os.path.abspath(single_directory + "/install"))
                 else:
@@ -177,12 +183,18 @@ class Symlink(Actions):
     def run(self, namespace):
 
         what_to_do = namespace.symlink[0]
-        # self.command(what_to_do, os.path.abspath('./symlinks/'))
+
+        what_os = os.uname()[0].lower()
+
+        if os.path.exists(what_os):
+            directories.insert(0, os.path.abspath(what_os))
+
         directories.insert(0, os.path.abspath('.'))
 
         if len(directories) > 0:
             for single_directory in directories:
-                self.command(what_to_do, os.path.abspath(single_directory) + "/symlinks")
+                if os.path.exists(os.path.abspath(single_directory) + "/symlinks"):
+                    self.command(what_to_do, os.path.abspath(single_directory) + "/symlinks")
 
     def command(self, what_to_do, single_directory):
         '''

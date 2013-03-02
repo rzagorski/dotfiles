@@ -1,0 +1,34 @@
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,hosts}; do
+    if [[ -r "$file" ]]; then
+        source "$file"
+    fi
+done
+unset file
+
+# yup I don't like vim
+export EDITOR=nano
+export GIT_EDITOR=nano
+
+if [[ -d "$HOME/.rbenv/" ]]; then
+    PATH="$HOME/.rbenv/bin:$PATH"
+fi
+
+export PATH
+
+if [[ which rbenv > /dev/null ]]; then
+    eval "$(rbenv init -)"
+fi
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+shopt -s dirspell
+
+# Just type directory without the cd
+shopt -s autocd
+
+shopt -s histappend
+shopt -s checkwinsize
+
+# Show some colors ls
+export CLICOLOR=1
+export LSCOLORS=cxfxcxdxbxegedabagacad
