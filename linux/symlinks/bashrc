@@ -15,7 +15,8 @@ fi
 
 export PATH
 
-if [[ which rbenv > /dev/null ]]; then
+rbenv_check=`which rbenc`
+if [[ $rbenv_check != "" ]]; then
     eval "$(rbenv init -)"
 fi
 
