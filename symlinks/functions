@@ -10,3 +10,8 @@ function path_remove() {
   # output the new array
   echo "${t[*]}"
 }
+
+function ga
+{
+    grep $1 * -R
+}
