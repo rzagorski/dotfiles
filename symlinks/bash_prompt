@@ -10,7 +10,7 @@ function put_spacing() {
     local columns=$(tput cols)
     local git_data=$(git_prompt_info)
 
-    ((termwidth=${columns}-${#git_data}-${#lpwd}-19))
+    ((termwidth=${columns}-${#git_data}-${#lpwd}-25))
     local spacing=""
 
     for ((i=0; i<$termwidth; i++)); do
