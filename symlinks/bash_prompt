@@ -37,7 +37,7 @@ function scm_prompt_info {
 function git_prompt_info {
     local git_state="${green}✓"
     if [[ -n $(git status -s 2> /dev/null |grep -v ^# |grep -v "working directory clean") ]]; then
-    git_state="${red}✗"
+        git_state="${red}✗"
     fi
 
     local git_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)

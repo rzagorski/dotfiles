@@ -33,7 +33,7 @@ load-plugins=
 # can either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once).
-disable=F0401,W0105,E1101,W0232,R0201
+disable=locally-disabled
 
 
 [REPORTS]
@@ -43,7 +43,8 @@ disable=F0401,W0105,E1101,W0232,R0201
 output-format=text
 
 # Include message's id in output
-include-ids=yes
+include-ids=no
+symbols=yes
 
 # Put messages in a separate file for each module / package specified on the
 # command line instead of printing them on stdout. Reports (if any) will be
@@ -132,7 +133,7 @@ class-rgx=[A-Z_][a-zA-Z0-9]+$
 function-rgx=[a-z_][a-z0-9_]{2,30}$
 
 # Regular expression which should only match correct method names
-method-rgx=[a-z_][a-z0-9_]{2,30}$
+method-rgx=(([a-z_][a-z0-9_]{2,30})|(setUp)|(tearDown)|(setUpClass)|(tearDownClass))$
 
 # Regular expression which should only match correct instance attribute names
 attr-rgx=[a-z_][a-z0-9_]{2,30}$
