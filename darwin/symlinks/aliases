@@ -8,3 +8,10 @@ alias cp='rsync -p'
 if [[ -e '/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl' ]]; then
     alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 fi
+
+alias menu-clean='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain system -domain user'
+
+function spotlight () {
+    sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+    killall SystemUIServer
+}
