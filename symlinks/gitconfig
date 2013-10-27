@@ -69,6 +69,3 @@
 	trustExitCode = true
 [mergetool]
 	prompt = false
-[merge]
-	tool = Kaleidoscope
-	ff = false
