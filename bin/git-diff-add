@@ -2,25 +2,31 @@
 
 set -e
 
-reset_color=$(tput sgr0)
-green=$(tput setaf 2)
-red=$(tput setaf 1)
-cyan=$(tput setaf 6)
-
 PROJECT_DIR=`git rev-parse --show-toplevel`
 FILES=`git ls-files --modified $PROJECT_DIR`
 
 ask() {
     file="$1"
-    echo -n "${red}add, ignore, checkout or quit ${reset_color}[${green}A${reset_color}/i/c]:${reset_color} "
+    echo -n "add, ignore, checkout or quit [A/i/c/q]: "
     read name
+    name=${name:-A}
 
     case "$name" in
-        "A"|"a") git add $file ;;
-        "I"|"i") return ;;
-        "C"|"c") git checkout -- $file ;;
-        "Q"|"q") exit ;;
-        *) git add $file
+        "A"|"a")
+            git add $file
+        ;;
+        "I"|"i")
+            return
+        ;;
+        "C"|"c")
+            git checkout -- $file
+        ;;
+        "Q"|"q")
+            exit
+        ;;
+        *)
+            git add $file
+        ;;
     esac
 }
 
