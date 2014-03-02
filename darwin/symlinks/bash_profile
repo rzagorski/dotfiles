@@ -10,7 +10,7 @@ export EDITOR=nano
 export GIT_EDITOR=nano
 
 # /usr/local/bin before /usr/bin
-PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$(path_remove /usr/local/bin)
+PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$(path_remove /usr/local/bin):/Users/afterdesign/.dotfiles/bin
 if [[ -d "$HOME/.rbenv/" ]]; then
     PATH="$HOME/.rbenv/bin:$PATH"
 fi
@@ -27,6 +27,8 @@ if [[ -f $(brew --prefix)/share/bash-completion/bash_completion ]]; then
     . $(brew --prefix)/share/bash-completion/bash_completion
 fi
 
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 shopt -s dirspell
@@ -40,4 +42,3 @@ shopt -s checkwinsize
 # Show some colors ls
 export CLICOLOR=1
 export LSCOLORS=cxfxcxdxbxegedabagacad
-
