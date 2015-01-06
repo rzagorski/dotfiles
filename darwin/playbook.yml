@@ -44,6 +44,23 @@
       with_items:
         - jshint
         - tldr
+        - yo
+        - npm
+        - bower
+        - jsxhint
+        - react-tools
+        - uglify-js
+
+    - pip: name={{ item }}
+      with_items:
+        - virtualenv
+        - arrow
+        - requests
+        - fabric
+        - bpython
+        - green
+        - coverage
+        - pip-tools
 
   post_tasks:
     - git: repo=https://github.com/afterdesign/dotfiles.git dest=~/.dotfiles
