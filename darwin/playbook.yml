@@ -67,6 +67,7 @@
 
     - file: src=~/Dropbox/system/dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
       with_items:
+        - hosts
         - ssh
 
     - file: src=~/.dotfiles/darwin/symlinks/{{ item }} dest=~/.{{ item }} state=link
