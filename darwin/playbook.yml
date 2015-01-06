@@ -1,0 +1,73 @@
+---
+- hosts: all
+  gather_facts: yes
+
+  pre_tasks:
+    - command: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" creates=/usr/local/bin/brew
+    - homebrew_tap: tap={{ item }} state=present
+      with_items:
+        - homebrew/versions
+        - homebrew/dupes
+        - homebrew/binary
+        - homebrew/completions
+
+  tasks:
+    - homebrew: name={{ item }} state=present
+      with_items:
+        - bash
+        - bash-completion2
+        - node
+        - git
+        - git-extras
+        - git-number
+        - rbenv
+        - ruby-build
+        - htop-osx
+        - nano
+        - ctags
+        - csshx
+        - chromedriver
+        - packer
+        - packer-completion
+        - vagrant-completion
+        - selenium-server-standalone
+        - tree
+        - watch
+        - wget
+        - autojump
+        - coreutils
+        - icdiff
+        - mtr
+        - multitail
+
+    - npm: name={{ item }} global=yes
+      with_items:
+        - jshint
+        - tldr
+
+  post_tasks:
+    - git: repo=https://github.com/afterdesign/dotfiles.git dest=~/.dotfiles
+
+    - file: src=~/Dropbox/system/dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - ssh
+
+    - file: src=~/.dotfiles/darwin/symlinks/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - aliases
+        - bash_profile
+
+    - file: src=~/.dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - bash_prompt
+        - functions
+        - gitconfig
+        - gitignore
+        - jshintrc
+        - nanorc
+        - pylintrc
+
+    - file: src=~/Dropbox/system/Library/{{ item }} dest=~/Library/Application\ Support/{{ item }} state=link
+      with_items:
+        - Adium\ 2.0
+        - Alfred\ 2
