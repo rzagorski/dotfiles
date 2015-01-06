@@ -2,7 +2,7 @@
 
 My dotfiles for quick configuration new/clean systems.
 Almost all of configuration moved to [ansible](http://www.ansible.com/home).
-Before using I need to install Dropbox and ansible.
+Before using I need to install Dropbox, Xcode and ansible.
 
 ## Usage
 
