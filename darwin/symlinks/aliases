@@ -2,6 +2,9 @@
 alias ll='ls -lahG'
 alias l='ls'
 
+alias npml='npm list --depth=0 "$@" 2>/dev/null'
+alias npmo='npm outdated --depth=0 "$@" 2>/dev/null'
+
 alias cp='rsync -p --progress'
 
 # application aliases
