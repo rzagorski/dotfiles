@@ -9,7 +9,6 @@ alias cp='rsync -p --progress'
 
 # application aliases
 if [[ -e '/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' ]]; then
-    echo "test"
     alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 fi
 

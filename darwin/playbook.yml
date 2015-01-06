@@ -3,7 +3,6 @@
   gather_facts: yes
 
   pre_tasks:
-    - command: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" creates=/usr/local/bin/brew
     - homebrew_tap: tap={{ item }} state=present
       with_items:
         - homebrew/versions
@@ -51,7 +50,9 @@
         - react-tools
         - uglify-js
 
-    - pip: name={{ item }}
+    - name: install python modules
+      sudo: yes
+      pip: name={{ item }}
       with_items:
         - virtualenv
         - arrow
