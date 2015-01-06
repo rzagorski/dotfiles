@@ -33,6 +33,6 @@ ask() {
 for file in $FILES; do
     clear
     echo $file
-    git diff $file
+    git difftool $file
     ask $file
 done

@@ -6,19 +6,19 @@
     ui = always
 
 [color "status"]
-    added = blue 
+    added = blue
     changed = yellow
     untracked = white ul
 
 [color "diff"]
     meta = white bold
-    frag = magenta ul 
+    frag = magenta ul
     old = red bold
     new = green bold
 
 [color "branch"]
     current = yellow reverse
-    local = yellow 
+    local = yellow
     remote = green
 
 [alias]
@@ -35,7 +35,7 @@
     ci = commit
     co = checkout
     cb = checkout --track -b
-    br = branch 
+    br = branch
     diff = diff --word-diff
     dc = diff --cached
     da = diff-add
@@ -59,12 +59,14 @@
 
 [core]
     excludesfile = ~/.gitignore
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
 [diff]
-	tool = Kaleidoscope
+    tool = icdiff
 [difftool]
-	prompt = false
+    prompt = false
+[difftool "icdiff"]
+    cmd = icdiff $LOCAL $REMOTE | less -R
+
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
