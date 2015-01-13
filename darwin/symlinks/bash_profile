@@ -21,7 +21,7 @@ if [[ -f $(brew --prefix)/bin/rbenv ]]; then
     eval "$(rbenv init -)"
 fi
 
-export NODE_PATH="/usr/local/lib/node"
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node:/usr/local/lib/node_modules
 
 if [[ -f $(brew --prefix)/share/bash-completion/bash_completion ]]; then
     . $(brew --prefix)/share/bash-completion/bash_completion
