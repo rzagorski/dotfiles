@@ -27,6 +27,14 @@
         - mtr
         - multitail
 
+    - name: Remove packages
+      apt: name={{ item }} state=absent purge=yes
+      with_items:
+        - update-notifier-common
+        - landscape-common
+        - update-manager-core
+        - ubuntu-release-upgrader-core
+
   post_tasks:
     - file: src=~/.dotfiles/linux/symlinks/{{ item }} dest=~/.{{ item }} state=link
       sudo: no
