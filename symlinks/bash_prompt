@@ -3,6 +3,7 @@ reset_color=$(tput sgr0)
 green=$(tput setaf 2)
 red=$(tput setaf 1)
 cyan=$(tput setaf 6)
+yellow=$(tput setaf 3)
 
 function put_spacing() {
     local lpwd=$(get_pwd)
@@ -52,8 +53,10 @@ function get_pwd() {
 function get_user() {
     if [[ `whoami` == "root" ]]; then
         user_color=$red
-    else
+    elif [[ `whoami` != "root" && `uname` == "Darwin" ]]; then
         user_color=$cyan
+    elif [[ `whoami` != "root" && `uname` == "Linux" ]]; then
+        user_color=$yellow
     fi
 }
 
