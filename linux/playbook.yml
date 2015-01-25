@@ -1,0 +1,44 @@
+---
+- hosts: all
+  gather_facts: yes
+  sudo: yes
+
+  pre_tasks:
+    - name: add nodejs repo
+      shell: add_node_repository.sh
+    - apt: update_cache=yes
+    - apt: upgrade=dist
+    - name: install
+
+  tasks:
+    - apt: name={{ item }} state=present
+      with_items:
+        - bash-completion
+        - nodejs
+        - git
+        - htop
+        - alpine-pico
+        - tree
+        - watch
+        - wget
+        - curl
+        - autojump
+        - icdiff
+        - mtr
+        - multitail
+
+  post_tasks:
+    - file: src=~/.dotfiles/linux/symlinks/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - aliases
+        - bashrc
+
+    - file: src=~/.dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
+      with_items:
+        - bash_prompt
+        - functions
+        - gitconfig
+        - gitignore
+        - jshintrc
+        - nanorc
+        - pylintrc
