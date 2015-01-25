@@ -4,8 +4,9 @@
   sudo: yes
 
   pre_tasks:
-    - name: add nodejs repo
-      shell: add_node_repository.sh
+    - get_url: url=https://deb.nodesource.com/setup dest=/root/add_node_repository.sh
+    - command: /bin/bash /root/add_node_repository.sh
+    - file: path=/root/add_node_repository.sh state=absent
     - apt: update_cache=yes
     - apt: upgrade=dist
 
