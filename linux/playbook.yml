@@ -23,7 +23,6 @@
         - wget
         - curl
         - autojump
-        - icdiff
         - mtr
         - multitail
 
