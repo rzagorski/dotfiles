@@ -10,12 +10,13 @@ export EDITOR=nano
 export GIT_EDITOR=nano
 
 # /usr/local/bin before /usr/bin
-PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$(path_remove /usr/local/bin):/Users/afterdesign/.dotfiles/bin
+PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/afterdesign/.dotfiles/bin
 if [[ -d "$HOME/.rbenv/" ]]; then
     PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
 export PATH
+launchctl setenv PATH $PATH
 
 if [[ -f $(brew --prefix)/bin/rbenv ]]; then
     eval "$(rbenv init -)"
