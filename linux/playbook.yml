@@ -8,7 +8,6 @@
       shell: add_node_repository.sh
     - apt: update_cache=yes
     - apt: upgrade=dist
-    - name: install
 
   tasks:
     - apt: name={{ item }} state=present
