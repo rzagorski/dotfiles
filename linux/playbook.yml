@@ -12,6 +12,7 @@
 
   tasks:
     - apt: name={{ item }} state=present
+      sudo: yes
       with_items:
         - bash-completion
         - nodejs
@@ -28,11 +29,13 @@
 
   post_tasks:
     - file: src=~/.dotfiles/linux/symlinks/{{ item }} dest=~/.{{ item }} state=link
+      sudo: no
       with_items:
         - aliases
         - bashrc
 
     - file: src=~/.dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
+      sudo: no
       with_items:
         - bash_prompt
         - functions
