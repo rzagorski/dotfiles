@@ -1,12 +1,12 @@
 #!/bin/bash
 
-set -e
-
 PROJECT_DIR=`git rev-parse --show-toplevel`
 FILES=`git ls-files --modified $PROJECT_DIR`
+DELETED_FILES=`git ls-files --deleted $PROJECT_DIR`
 
 ask() {
     file="$1"
+    git status -s $file
     echo -n "add, ignore, checkout or quit [A/i/c/q]: "
     read name
     name=${name:-A}
@@ -32,7 +32,12 @@ ask() {
 
 for file in $FILES; do
     clear
-    echo $file
+    deleted_test=`echo $DELETED_FILES | grep -c "$file"`
+    if [[ deleted_test -gt 0 ]]; then
+        ask $file
+        continue
+    fi
+
     git difftool $file
     ask $file
 done
