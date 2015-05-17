@@ -48,6 +48,7 @@
         - bashrc
         - bash_prompt
         - nanorc
+      sudo: no
 
     - file: src=~/.dotfiles/linux/symlinks/{{ item }} dest=~/.{{ item }} state=link
       sudo: no
