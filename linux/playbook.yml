@@ -42,6 +42,13 @@
       when: ansible_distribution == 'Ubuntu'
 
   post_tasks:
+    - file: path=~/.{{ item }} state=absent
+      with_items:
+        - aliases
+        - bashrc
+        - bash_prompt
+        - nanorc
+
     - file: src=~/.dotfiles/linux/symlinks/{{ item }} dest=~/.{{ item }} state=link
       sudo: no
       with_items:
@@ -52,9 +59,4 @@
       sudo: no
       with_items:
         - bash_prompt
-        - functions
-        - gitconfig
-        - gitignore
-        - jshintrc
         - nanorc
-        - pylintrc
