@@ -5,8 +5,12 @@
 
   pre_tasks:
     - get_url: url=https://deb.nodesource.com/setup dest=/root/add_node_repository.sh
+      when: ansible_distribution == 'Ubuntu'
     - command: /bin/bash /root/add_node_repository.sh
+      when: ansible_distribution == 'Ubuntu'
+
     - file: path=/root/add_node_repository.sh state=absent
+      when: ansible_distribution == 'Ubuntu'
     - apt: update_cache=yes
     - apt: upgrade=dist
 
@@ -14,7 +18,7 @@
     - apt: name={{ item }} state=present
       sudo: yes
       with_items:
-        - bash-completion
+        - bash-completion2
         - nodejs
         - git
         - htop
@@ -35,6 +39,7 @@
         - update-manager-core
         - ubuntu-release-upgrader-core
         - update-motd
+      when: ansible_distribution == 'Ubuntu'
 
   post_tasks:
     - file: src=~/.dotfiles/linux/symlinks/{{ item }} dest=~/.{{ item }} state=link
