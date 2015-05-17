@@ -48,6 +48,7 @@
         - bashrc
         - bash_prompt
         - nanorc
+        - gitconfig
       sudo: no
 
     - file: src=~/.dotfiles/linux/symlinks/{{ item }} dest=~/.{{ item }} state=link
@@ -61,3 +62,4 @@
       with_items:
         - bash_prompt
         - nanorc
+        - gitconfig
