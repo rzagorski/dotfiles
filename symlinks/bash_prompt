@@ -1,3 +1,4 @@
+#!/bin/bash
 # more info: http://en.wikipedia.org/wiki/Tput
 reset_color=$(tput sgr0)
 green=$(tput setaf 2)
@@ -5,52 +6,22 @@ red=$(tput setaf 1)
 cyan=$(tput setaf 6)
 yellow=$(tput setaf 3)
 
-function put_spacing() {
-    local lpwd=$(get_pwd)
-    local termwidth
-    local columns=$(tput cols)
-    local git_data=$(git_prompt_info)
-
-    ((termwidth=${columns}-${#git_data}-${#lpwd}-25))
-    local spacing=""
-
-    for ((i=0; i<$termwidth; i++)); do
-        spacing="${spacing} "
-    done
-
-    echo -e "$spacing"
-}
-
-function scm_prompt_info {
-    local scm="NONE"
-
-    if [[ -f .git/HEAD ]]; then
-        scm="git"
-    elif [[ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]]; then
-        scm="git"
-    fi
-
-    if [[ $scm == "git" ]]; then
-        git_prompt_info
-    fi
-}
-
 function git_prompt_info {
+    if [[ -z "$(git symbolic-ref HEAD 2>/dev/null)" ]]; then
+        echo ""
+        return 0
+    fi
+
     local git_state="${green}✓"
-    if [[ -n $(git status -s 2> /dev/null |grep -v ^# |grep -v "working directory clean") ]]; then
+    if [[ -n $(git status -s 2>/dev/null |grep -v ^# |grep -v "working directory clean") ]]; then
         git_state="${red}✗"
     fi
 
     local git_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
-
-    echo -e "$git_state[git:$git_branch]"
+    echo -e "${git_state}[git:${git_branch}]"
 }
 
-function get_pwd() {
-   echo "${PWD/$HOME/~}"
-}
-
-function get_user() {
+function get_user_color() {
     if [[ `whoami` == "root" ]]; then
         user_color=$red
     elif [[ `whoami` != "root" && `uname` == "Darwin" ]]; then
@@ -61,8 +32,24 @@ function get_user() {
 }
 
 function prompt_command() {
-    get_user
-    PS1="$user_color[@\u]$reset_color \h ${reset_color}in ${cyan}\w ${reset_color}$(put_spacing)$(scm_prompt_info)${reset_color}\n→ "
+    get_user_color
+    local termwidth
+    local columns=$(tput cols)
+    local GIT_DATA=$(git_prompt_info)
+    local CWD=`echo $(pwd) | sed "s|${HOME}|~|"`
+    local HOSTNAME=`hostname -s`
+    local USERNAME=`whoami`
+    local PROMPT_CLEAN_LEFT="[@${USERNAME}] ${HOSTNAME} in ${CWD}"
+
+    ((termwidth=${columns}-${#GIT_DATA}-${#PROMPT_CLEAN_LEFT}))
+    local SPACING=""
+
+    for ((i=0; i<$termwidth; i++)); do
+        SPACING="${SPACING} "
+    done
+
+    PS1="$user_color[@${USERNAME}]$reset_color ${HOSTNAME} ${reset_color}in ${cyan}${CWD}${reset_color}${SPACING}${GIT_DATA}${reset_color}\n→ "
 }
+
 
 PROMPT_COMMAND=prompt_command
