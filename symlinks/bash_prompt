@@ -37,7 +37,7 @@ function prompt_command() {
     local columns=$(tput cols)
     local GIT_DATA=$(git_prompt_info)
     local CWD=`echo $(pwd) | sed "s|${HOME}|~|"`
-    local HOSTNAME=`hostname -s`
+    local HOSTNAME=`hostname`
     local USERNAME=`whoami`
     local PROMPT_CLEAN_LEFT="[@${USERNAME}] ${HOSTNAME} in ${CWD}"
 
