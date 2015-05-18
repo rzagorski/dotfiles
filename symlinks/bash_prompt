@@ -1,55 +1,54 @@
 #!/bin/bash
-# more info: http://en.wikipedia.org/wiki/Tput
-reset_color=$(tput sgr0)
-green=$(tput setaf 2)
-red=$(tput setaf 1)
-cyan=$(tput setaf 6)
-yellow=$(tput setaf 3)
-
-function git_prompt_info {
-    if [[ -z "$(git symbolic-ref HEAD 2>/dev/null)" ]]; then
-        echo ""
-        return 0
-    fi
-
-    local git_state="${green}✓"
-    if [[ -n $(git status -s 2>/dev/null |grep -v ^# |grep -v "working directory clean") ]]; then
-        git_state="${red}✗"
-    fi
-
-    local git_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
-    echo -e "${git_state}[git:${git_branch}]"
-}
-
-function get_user_color() {
-    if [[ `whoami` == "root" ]]; then
-        user_color=$red
-    elif [[ `whoami` != "root" && `uname` == "Darwin" ]]; then
-        user_color=$cyan
-    elif [[ `whoami` != "root" && `uname` == "Linux" ]]; then
-        user_color=$yellow
-    fi
-}
-
 function prompt_command() {
-    get_user_color
-    local termwidth
-    local columns=$(tput cols)
-    local GIT_DATA=$(git_prompt_info)
-    local CWD=`echo $(pwd) | sed "s|${HOME}|~|"`
-    local HOSTNAME=`hostname`
-    local USERNAME=`whoami`
-    local PROMPT_CLEAN_LEFT="[@${USERNAME}] ${HOSTNAME} in ${CWD}"
+    local RESET_COLOR=$(tput sgr0)
+    local GREEN=$(tput setaf 2)
+    local RED=$(tput setaf 1)
+    local CYAN=$(tput setaf 6)
+    local YELLOW=$(tput setaf 3)
 
-    ((termwidth=${columns}-${#GIT_DATA}-${#PROMPT_CLEAN_LEFT}))
+    local CWD=`echo $(pwd) | sed "s|${HOME}|~|"`
+    local COLUMNS=$(tput cols)
+    local HOSTNAME=$(hostname)
+    local USERNAME=$(whoami)
+    local USER_COLOR=${CYAN}
+    local termwidth
+
+    local PROMPT_LEFT_PART="[@${USERNAME}] ${HOSTNAME} in ${CWD}"
+
+    if [[ `whoami` == "root" ]]; then
+        USER_COLOR=${RED}
+    elif [[ `whoami` != "root" && `uname` == "Linux" ]]; then
+        USER_COLOR=${YELLOW}
+    fi
+
+    local GIT_STATE=""
+    if [[ -n "$(git symbolic-ref HEAD 2>/dev/null)" ]]; then
+        if [[ -n $(git status -s 2>/dev/null |grep -v ^# |grep -v "working directory clean") ]]; then
+            local GIT_STATE_COLOR=${RED}
+            local GIT_STATE_SIGN="✗"
+        else
+            local GIT_STATE_COLOR=${GREEN}
+            local GIT_STATE_SIGN="✓"
+        fi
+
+        local GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+
+        GIT_STATE="${GIT_STATE_SIGN}[git:${GIT_BRANCH}]"
+    fi
+
+    ((termwidth=${COLUMNS}-${#GIT_STATE}-${#PROMPT_LEFT_PART}))
     local SPACING=""
 
     for ((i=0; i<$termwidth; i++)); do
         SPACING="${SPACING} "
     done
 
-    PS1="$user_color[@${USERNAME}]$reset_color ${HOSTNAME} ${reset_color}in ${cyan}${CWD}${reset_color}${SPACING}${GIT_DATA}${reset_color}\n→ "
+    PS1="$USER_COLOR[@${USERNAME}]$RESET_COLOR "
+    PS1+="${HOSTNAME} "
+    PS1+="in ${CYAN}${CWD}${RESET_COLOR}"
+    PS1+="${SPACING}"
+    PS1+="${GIT_STATE_COLOR}${GIT_STATE}${RESET_COLOR}"
+    PS1+="\n→ "
 }
-
 
 PROMPT_COMMAND=prompt_command
