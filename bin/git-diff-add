@@ -1,31 +1,31 @@
 #!/bin/bash
 
 PROJECT_DIR=`git rev-parse --show-toplevel`
-FILES=`git ls-files --modified $PROJECT_DIR`
-DELETED_FILES=`git ls-files --deleted $PROJECT_DIR`
+FILES=`git ls-files --modified "$PROJECT_DIR"`
+DELETED_FILES=`git ls-files --deleted "$PROJECT_DIR"`
 
 ask() {
     file="$1"
-    git status -s $file
+    git status -s "$file"
     echo -n "add, ignore, checkout or quit [A/i/c/q]: "
     read name
     name=${name:-A}
 
     case "$name" in
         "A"|"a")
-            git add $file
+            git add "$file"
         ;;
         "I"|"i")
             return
         ;;
         "C"|"c")
-            git checkout -- $file
+            git checkout -- "$file"
         ;;
         "Q"|"q")
             exit
         ;;
         *)
-            git add $file
+            git add "$file"
         ;;
     esac
 }
@@ -38,6 +38,6 @@ for file in $FILES; do
         continue
     fi
 
-    git difftool $file
+    git difftool "$file"
     ask $file
 done
