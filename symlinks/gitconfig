@@ -3,7 +3,7 @@
 	email = malinowski@red-sky.pl
 
 [color]
-    ui = always
+    ui = auto
 
 [color "status"]
     added = blue

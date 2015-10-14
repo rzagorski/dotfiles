@@ -43,3 +43,4 @@ shopt -s checkwinsize
 # Show some colors ls
 export CLICOLOR=1
 export LSCOLORS=cxfxcxdxbxegedabagacad
+export GOPATH=~/.go/
