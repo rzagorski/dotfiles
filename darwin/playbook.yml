@@ -38,30 +38,18 @@
         - icdiff
         - mtr
         - multitail
+        - ncdu
+        - tmux
+        - tmux-cssh
 
     - npm: name={{ item }} global=yes
       with_items:
+        - bower
+        - git-stats
+        - git-stats-importer@
+        - npm
         - jshint
         - tldr
-        - yo
-        - npm
-        - bower
-        - jsxhint
-        - react-tools
-        - uglify-js
-
-    - name: install python modules
-      sudo: yes
-      pip: name={{ item }}
-      with_items:
-        - virtualenv
-        - arrow
-        - requests
-        - fabric
-        - bpython
-        - green
-        - coverage
-        - pip-tools
 
   post_tasks:
     - file: src=~/Dropbox/system/dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
