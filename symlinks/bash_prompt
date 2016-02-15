@@ -11,7 +11,7 @@ function add_node_modules_to_path() {
 
     for single_path in $PATH; do
         if [[ ! $single_path =~ (:)*"node_modules"(:)* ]]; then
-            updated_paths="$single_path:$updated_paths"
+            updated_paths="$updated_paths:$single_path"
             continue;
         fi
 
