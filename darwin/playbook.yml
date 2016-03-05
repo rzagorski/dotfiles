@@ -41,14 +41,14 @@
         - ncdu
         - tmux
         - tmux-cssh
+        - jq
+        - python3
+        - trash
+        - dialog
 
     - npm: name={{ item }} global=yes
       with_items:
-        - bower
-        - git-stats
-        - git-stats-importer@
         - npm
-        - jshint
         - tldr
 
   post_tasks:
