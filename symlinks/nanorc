@@ -6,3 +6,6 @@ set smooth
 set mouse
 set nohelp
 set const
+
+include "/usr/local/share/nano/php.nanorc"
+include "/usr/local/share/nano/python.nanorc"

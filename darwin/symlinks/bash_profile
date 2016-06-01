@@ -10,7 +10,7 @@ export EDITOR=nano
 export GIT_EDITOR=nano
 
 # /usr/local/bin before /usr/bin
-PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/$(whoami)/.dotfiles/bin:$(python -m site --user-base)/bin
+PATH=$(python3 -m site --user-base)/bin:$(python -m site --user-base)/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/$(whoami)/.dotfiles/bin
 if [[ -d "$HOME/.rbenv/" ]]; then
     PATH="$HOME/.rbenv/bin:$PATH"
 fi
@@ -44,3 +44,4 @@ shopt -s checkwinsize
 export CLICOLOR=1
 export LSCOLORS=cxfxcxdxbxegedabagacad
 export GOPATH=~/.go/
+export HISTSIZE=5000000

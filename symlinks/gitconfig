@@ -74,3 +74,5 @@
 	prompt = false
 [merge]
 	tool = Kaleidoscope
+[push]
+	default = simple

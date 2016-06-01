@@ -45,6 +45,7 @@
         - python3
         - trash
         - dialog
+        - mosh
 
     - npm: name={{ item }} global=yes
       with_items:
@@ -72,7 +73,7 @@
         - nanorc
         - pylintrc
 
-    - file: src=~/Dropbox/system/Library/{{ item }} dest=~/Library/Application\ Support/{{ item }} state=link
+    - file: src="~/Dropbox/system/Library/{{ item }}" dest=~/Library/Application{{' '}}Support/{{ item }} state=link
       with_items:
-        - Adium\ 2.0
-        - Alfred\ 2
+        - "Adium{{' '}}2.0"
+        - "Alfred{{' '}}2"
