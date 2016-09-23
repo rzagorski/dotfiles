@@ -3,8 +3,13 @@
   gather_facts: yes
 
   pre_tasks:
+    - name: Check if brew is already installed
+      stat: path=/usr/local/bin/brew
+      register: brew_stat
+
     - name: Install homebrew
       shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      when: brew_stat.exists is defined and brew_stat.exists == False
 
     - name: brew tap {{ item }}
       homebrew_tap: tap={{ item }} state=present
