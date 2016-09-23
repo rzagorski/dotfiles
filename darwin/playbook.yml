@@ -60,7 +60,6 @@
         - vagrant-completion
         - trash
         - tree
-        - vagrant
         - watch
         - wget
 
@@ -106,6 +105,7 @@
         - tomtom-mysports-connect
         - torbrowser
         - transmit
+        - vagrant
         - vlc
         - virtualbox
         - whatsapp
