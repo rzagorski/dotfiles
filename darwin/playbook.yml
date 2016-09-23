@@ -15,9 +15,10 @@
         - homebrew/completions
         - caskroom/versions
         - caskroom/cask
+        - homebrew/php
 
   tasks:
-    - name: Install package {{ item }}
+    - name: Install brew packages
       homebrew: name={{ item }} state=present
       with_items:
         - autojump
@@ -56,6 +57,7 @@
         - tree
         - watch
         - wget
+
     - name: Install from appstore
       shell: mas install {{ item }}
       with_items:
@@ -70,7 +72,7 @@
         - 880001334
         - 1039633667
 
-    - name: Install from cask {{ item }}
+    - name: Install from cask
       homebrew_cask: name={{ item }} state=present
       with_items:
         - adium
@@ -112,7 +114,8 @@
     - name: Install older pylint
       pip: executable=pip3 name=pylint version=1.5.6
 
-    - npm: name={{ item }} global=yes
+    - name: Install npm packages
+      npm: name={{ item }} global=yes
       with_items:
         - npm
         - tldr
