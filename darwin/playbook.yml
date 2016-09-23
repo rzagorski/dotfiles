@@ -3,49 +3,114 @@
   gather_facts: yes
 
   pre_tasks:
-    - homebrew_tap: tap={{ item }} state=present
+    - name: Install homebrew
+      shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+    - name: brew tap {{ item }}
+      homebrew_tap: tap={{ item }} state=present
       with_items:
         - homebrew/versions
         - homebrew/dupes
         - homebrew/binary
         - homebrew/completions
+        - caskroom/versions
+        - caskroom/cask
 
   tasks:
-    - homebrew: name={{ item }} state=present
+    - name: Install package {{ item }}
+      homebrew: name={{ item }} state=present
       with_items:
+        - autojump
         - bash
         - bash-completion2
-        - node
+        - chromedriver
+        - csshx
+        - ctags
+        - dialog
         - git
         - git-extras
-        - git-number
-        - rbenv
-        - ruby-build
-        - htop-osx
+        - htop
+        - jq
+        - launchctl-completion
+        - mas
+        - mobile-shell
+        - mtr
+        - multitail
         - nano
-        - ctags
-        - csshx
-        - chromedriver
+        - ncdu
+        - node
         - packer
         - packer-completion
-        - vagrant-completion
+        - php56
+        - php-code-sniffer
+        - pngquant
+        - python
+        - python3
+        - rbenv
+        - ruby-build
         - selenium-server-standalone
+        - tmux
+        - tmux-cssh
+        - vagrant-completion
+        - trash
         - tree
         - watch
         - wget
-        - autojump
-        - coreutils
+    - name: Install from appstore
+      shell: mas install {{ item }}
+      with_items:
+        - 425424353
+        - 408981434
+        - 406056744
+        - 443987910
+        - 524373870
+        - 557168941
+        - 419330170
+        - 458034879
+        - 880001334
+        - 1039633667
+
+    - name: Install from cask {{ item }}
+      homebrew_cask: name={{ item }} state=present
+      with_items:
+        - adium
+        - adobe-creative-cloud
+        - alfred
+        - cleanapp
+        - controlplane
+        - dropbox
+        - firefox
+        - firefoxdeveloperedition
+        - flux
+        - google-chrome
+        - google-chrome-canary
+        - hipchat
+        - iterm2
+        - istat-menus
+        - karabiner
+        - kobo
+        - logitech-options
+        - macdown
+        - opera
+        - opera-developer
+        - sequel-pro
+        - slack
+        - spotify
+        - tomtom-mysports-connect
+        - torbrowser
+        - transmit
+        - vlc
+        - virtualbox
+        - whatsapp
+
+    - name: Install pip packages
+      pip: executable=pip3 name={{ item }} state=latest
+      with_items:
         - icdiff
-        - mtr
-        - multitail
-        - ncdu
-        - tmux
-        - tmux-cssh
-        - jq
-        - python3
-        - trash
-        - dialog
-        - mosh
+        - virtualenv
+
+    - name: Install older pylint
+      pip: executable=pip3 name=pylint version=1.5.6
 
     - npm: name={{ item }} global=yes
       with_items:
@@ -53,17 +118,14 @@
         - tldr
 
   post_tasks:
-    - file: src=~/Dropbox/system/dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
-      with_items:
-        - hosts
-        - ssh
-
-    - file: src=~/.dotfiles/darwin/symlinks/{{ item }} dest=~/.{{ item }} state=link
+    - name: Link darwin based dotfiles
+      file: src=~/.dotfiles/darwin/symlinks/{{ item }} dest=~/.{{ item }} state=link
       with_items:
         - aliases
         - bash_profile
 
-    - file: src=~/.dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
+    - name: Link general dotfiles
+      file: src=~/.dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
       with_items:
         - bash_prompt
         - functions
@@ -73,7 +135,12 @@
         - nanorc
         - pylintrc
 
-    - file: src="~/Dropbox/system/Library/{{ item }}" dest=~/Library/Application{{' '}}Support/{{ item }} state=link
-      with_items:
-        - "Adium{{' '}}2.0"
-        - "Alfred{{' '}}2"
+  #   - file: src=~/Dropbox/system/dotfiles/symlinks/{{ item }} dest=~/.{{ item }} state=link
+  #     with_items:
+  #       - hosts
+  #       - ssh
+
+  #   - file: src="~/Dropbox/system/Library/{{ item }}" dest=~/Library/Application{{' '}}Support/{{ item }} state=link
+  #     with_items:
+  #       - "Adium{{' '}}2.0"
+  #       - "Alfred{{' '}}3"
