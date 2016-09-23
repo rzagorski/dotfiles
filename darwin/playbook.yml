@@ -60,6 +60,7 @@
         - vagrant-completion
         - trash
         - tree
+        - vagrant
         - watch
         - wget
 
@@ -67,7 +68,6 @@
       shell: mas install {{ item }}
       with_items:
         - 425424353
-        - 408981434
         - 406056744
         - 443987910
         - 524373870
@@ -113,11 +113,13 @@
     - name: Install pip packages
       pip: executable=pip3 name={{ item }} state=latest
       with_items:
-        - icdiff
         - virtualenv
 
     - name: Install older pylint
       pip: executable=pip3 name=pylint version=1.5.6
+
+    - name: Install icdiff with pip2
+      pip: executable=pip2 name=icdiff state=latest
 
     - name: Install npm packages
       npm: name={{ item }} global=yes
