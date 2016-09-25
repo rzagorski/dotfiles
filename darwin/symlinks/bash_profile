@@ -9,20 +9,9 @@ unset file
 export EDITOR=nano
 export GIT_EDITOR=nano
 
-# /usr/local/bin before /usr/bin
-PATH=$(python3 -m site --user-base)/bin:$(python -m site --user-base)/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/$(whoami)/.dotfiles/bin
-if [[ -d "$HOME/.rbenv/" ]]; then
-    PATH="$HOME/.rbenv/bin:$PATH"
-fi
-
-export PATH
-launchctl setenv PATH $PATH
-
 if [[ -f $(brew --prefix)/bin/rbenv ]]; then
     eval "$(rbenv init -)"
 fi
-
-export NODE_PATH=$NODE_PATH:/usr/local/lib/node:/usr/local/lib/node_modules
 
 if [[ -f $(brew --prefix)/share/bash-completion/bash_completion ]]; then
     . $(brew --prefix)/share/bash-completion/bash_completion

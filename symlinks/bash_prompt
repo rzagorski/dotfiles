@@ -1,35 +1,9 @@
 #!/bin/bash
 
-function add_node_modules_to_path() {
-    # this function is not goint to be the most intelligent thing in entire world
-    # but it'll work for me
-    # TODO: what should happen if there are multiple node_modules directories in tree
-
-    OLD_IFS=$IFS
-    IFS=":"
-    local updated_paths=""
-
-    for single_path in $PATH; do
-        if [[ ! $single_path =~ (:)*"node_modules"(:)* ]]; then
-            updated_paths="$updated_paths:$single_path"
-            continue;
-        fi
-
-        local path_with_modules=${single_path%%"/node_modules/.bin"}
-        if [[ $PWD =~ ^$path_with_modules* ]]; then
-            updated_paths="$single_path:$updated_paths"
-        fi
-    done
-
-    IFS=$OLD_IFS
-
-    local modules_path="$PWD/node_modules/.bin"
-    if [[ -d $modules_path ]] && [[ ! $PATH =~ (:)*$modules_path(:)* ]]; then
-        updated_paths="$modules_path:$updated_paths"
-    fi
-
-    PATH=$updated_paths
+function set_paths() {
+    PATH=$(python3 $HOME/.dotfiles/bin/initialize_paths.py)
     export PATH
+    launchctl setenv PATH $PATH
 }
 
 function _bash_prompt_get_git_state() {
@@ -82,7 +56,7 @@ function _bash_prompt_get_host_user_path() {
 }
 
 function _bash_prompt_command() {
-    add_node_modules_to_path
+    set_paths
 
     local COLUMNS=$(tput cols)
 
