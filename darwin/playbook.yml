@@ -21,7 +21,8 @@
         - caskroom/versions
         - caskroom/cask
         - homebrew/php
-
+    # roles:
+    #   - sublime
   tasks:
     - name: Install brew packages
       homebrew: name={{ item }} state=present
@@ -63,18 +64,18 @@
         - watch
         - wget
 
-    - name: Install from appstore
-      shell: mas install {{ item }}
-      with_items:
-        - 425424353
-        - 406056744
-        - 443987910
-        - 524373870
-        - 557168941
-        - 419330170
-        - 458034879
-        - 880001334
-        - 1039633667
+  #   - name: Install from appstore
+  #     shell: mas install {{ item }}
+  #     with_items:
+  #       - 425424353
+  #       - 406056744
+  #       - 443987910
+  #       - 524373870
+  #       - 557168941
+  #       - 419330170
+  #       - 458034879
+  #       - 880001334
+  #       - 1039633667
 
     - name: Install from cask
       homebrew_cask: name={{ item }} state=present
@@ -82,33 +83,33 @@
         - adium
         - adobe-creative-cloud
         - alfred
-        - cleanapp
-        - controlplane
+        # - cleanapp
+        # - controlplane
         - dropbox
         - firefox
         - firefoxdeveloperedition
-        - flux
+        # - flux
         - google-chrome
         - google-chrome-canary
         - hipchat
         - iterm2
-        - istat-menus
-        - karabiner
-        - kobo
-        - logitech-options
+        # - istat-menus
+        # - karabiner
+        # - kobo
+        # - logitech-options
         - macdown
         - opera
         - opera-developer
         - sequel-pro
-        - slack
+        # - slack
         - spotify
-        - tomtom-mysports-connect
-        - torbrowser
-        - transmit
+        # - tomtom-mysports-connect
+        # - torbrowser
+        # - transmit
         - vagrant
         - vlc
         - virtualbox
-        - whatsapp
+        # - whatsapp
 
     - name: Install pip packages
       pip: executable=pip3 name={{ item }} state=latest

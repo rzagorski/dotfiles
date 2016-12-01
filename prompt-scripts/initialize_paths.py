@@ -46,27 +46,30 @@ def add_python_userbase_to_path(current_paths):
 
     :rtype: list
     """
+    python_versions_to_check = [
+        '2.7',
+        '3.4',
+        '3.5'
+    ]
 
-    python_3_path_to_bin = os.path.join(site.USER_BASE, 'bin')
-    python_2_path_to_bin = python_3_path_to_bin.replace(
-        '{major}.{minor}'.format(
-            major=sys.version_info.major,
-            minor=sys.version_info.minor
-        ),
-        '2.7'
-    )
+    for single_python_version in python_versions_to_check:
+        python_binary_path = os.path.join('/usr/local/bin/', 'python{}'.format(single_python_version))
 
-    current_paths = remove_path_from_current_paths(python_2_path_to_bin, current_paths)
-    current_paths.insert(
-        0,
-        python_2_path_to_bin
-    )
+        if not os.path.exists(python_binary_path):
+            continue
 
-    current_paths = remove_path_from_current_paths(python_3_path_to_bin, current_paths)
-    current_paths.insert(
-        0,
-        python_3_path_to_bin
-    )
+        python_bins_path = os.path.join(
+            os.getenv('HOME'),
+            'Library/Python/',
+            single_python_version,
+            'bin'
+        )
+
+        current_paths = remove_path_from_current_paths(python_bins_path, current_paths)
+        current_paths.insert(
+            0,
+            python_bins_path
+        )
 
     return current_paths
 

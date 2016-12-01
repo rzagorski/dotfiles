@@ -19,6 +19,10 @@ fi
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
+PATH=$(python3 $HOME/.dotfiles/prompt-scripts/initialize_paths.py)
+export PATH
+launchctl setenv PATH $PATH
+
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 shopt -s dirspell
