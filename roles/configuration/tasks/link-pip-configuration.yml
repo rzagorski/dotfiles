@@ -1,0 +1,7 @@
+---
+  - name: Link pip configuration
+    file:
+      src: "~/Dropbox/system/pip/"
+      dest: "~/.pip"
+      state: link
+    when: dropbox_synced_stat.stat.exists is defined and dropbox_synced_stat.stat.exists == True

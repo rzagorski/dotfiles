@@ -1,0 +1,27 @@
+---
+  - name: Link darwin based dotfiles
+    file:
+      src: "~/.dotfiles/symlinks/{{ item }}"
+      dest: "~/.{{ item }}"
+      state: link
+    with_items:
+      - aliases
+      - bash_profile
+      - bash_prompt
+      - functions
+      - gitconfig
+      - gitignore
+      - jshintrc
+      - nanorc
+      - pylintrc
+
+  - name: Link system files from dropbox
+    file:
+      src: "~/Dropbox/system/dotfiles/symlinks/{{ item }}"
+      dest: "~/.{{ item }}"
+      state: link
+    with_items:
+      - hosts
+      - ssh
+    when: dropbox_synced_stat.stat.exists is defined and dropbox_synced_stat.stat.exists == True
+

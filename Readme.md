@@ -1,14 +1,36 @@
 ## Dotfiles
 
-My dotfiles for quick configuration new/clean systems.
-Almost all of configuration moved to [ansible](http://www.ansible.com/home).
-Before using I need to install Dropbox, Xcode and ansible.
+My dotfiles for quick macOS/OS X.
 
-## Usage
+## Run configuration
 
-```
-ansible-playbook -i local.hosts playbook.yml
-```
+1. Install xcode and CLI tools:
+
+    ```
+    xcode-select --install
+    ```
+
+1. Install ansible:
+
+    ```
+    sudo easy_install pip
+    pip install --user ansible
+    ```
+
+1. Run ansible:
+
+    ```
+    git clone git@github.com:afterdesign/dotfiles.git ~/.dotfiles
+    cd ~/.dotfiles
+    $(python -m site --user-base)/bin/ansible-playbook --ask-become-pass -i local.hosts playbook.yml
+    ```
+
+1. Cleanup:
+
+    ```
+    /usr/local/bin/pip list --user --format=freeze | xargs pip uninstall -y $1
+    sudo /usr/local/bin/pip uninstall -y pip
+    ```
 
 # License
 

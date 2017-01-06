@@ -1,0 +1,41 @@
+---
+  - name: Install brew packages
+    homebrew:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - autojump
+      - chromedriver
+      - csshx
+      - ctags
+      - dialog
+      - git
+      - git-extras
+      - htop
+      - icdiff
+      - jq
+      - launchctl-completion
+      - mas
+      - mobile-shell
+      - mtr
+      - multitail
+      - nano
+      - ncdu
+      - node
+      - packer
+      - packer-completion
+      - php56
+      - php-code-sniffer
+      - pngquant
+      - python
+      - python3
+      - rbenv
+      - ruby-build
+      - selenium-server-standalone
+      - tmux
+      - tmux-cssh
+      - vagrant-completion
+      - trash
+      - tree
+      - watch
+      - wget

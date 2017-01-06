@@ -19,7 +19,7 @@ fi
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
-PATH=$(python3 $HOME/.dotfiles/prompt-scripts/initialize_paths.py)
+PATH=$(python $HOME/.dotfiles/prompt-scripts/initialize_paths.py)
 export PATH
 launchctl setenv PATH $PATH
 

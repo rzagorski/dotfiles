@@ -1,0 +1,38 @@
+---
+  - name: Install from cask
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    ignore_errors: yes
+    with_items:
+      - adium
+      - adobe-creative-cloud
+      - alfred
+      - cleanapp
+      - controlplane
+      - dropbox
+      - firefox
+      - firefoxdeveloperedition
+      - flux
+      - google-chrome
+      - google-chrome-canary
+      - hipchat
+      - iterm2
+      - istat-menus
+      - karabiner-elements
+      - kobo
+      - logitech-options
+      - logitech-control-center
+      - macdown
+      - opera
+      - opera-developer
+      - sequel-pro
+      - slack
+      - spotify
+      - tomtom-mysports-connect
+      - torbrowser
+      - transmit
+      - vagrant
+      - vlc
+      - virtualbox
+      - whatsapp

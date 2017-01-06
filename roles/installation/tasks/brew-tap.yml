@@ -1,0 +1,5 @@
+---
+  - name: brew tap
+    homebrew_tap:
+      name: homebrew/versions,homebrew/dupes,homebrew/binary,homebrew/completions,caskroom/versions,caskroom/cask,homebrew/php
+      state: present

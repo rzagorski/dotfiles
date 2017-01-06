@@ -15,7 +15,6 @@ def main():
 
     current_paths = os.environ['PATH'].split(':')
     current_paths = move_brew_path_to_first_place(current_paths)
-    current_paths = add_python_userbase_to_path(current_paths)
     current_paths = add_dotfiles_bin_path(current_paths)
     current_paths = add_local_node_modules_to_path(current_paths)
 
@@ -33,63 +32,8 @@ def move_brew_path_to_first_place(current_paths):
     :rtype: list
     """
 
-    current_paths = remove_path_from_current_paths('/usr/local/bin', current_paths)
-    current_paths.insert(0, '/usr/local/bin')
-    return current_paths
-
-
-def add_python_userbase_to_path(current_paths):
-    """
-    Add python paths to PATH
-
-    :param list current_paths: Current paths.
-
-    :rtype: list
-    """
-    python_versions_to_check = [
-        '2.7',
-        '3.4',
-        '3.5'
-    ]
-
-    for single_python_version in python_versions_to_check:
-        python_binary_path = os.path.join('/usr/local/bin/', 'python{}'.format(single_python_version))
-
-        if not os.path.exists(python_binary_path):
-            continue
-
-        python_bins_path = os.path.join(
-            os.getenv('HOME'),
-            'Library/Python/',
-            single_python_version,
-            'bin'
-        )
-
-        current_paths = remove_path_from_current_paths(python_bins_path, current_paths)
-        current_paths.insert(
-            0,
-            python_bins_path
-        )
-
-    return current_paths
-
-
-def add_rbenv_path(current_paths):
-    """
-    Check if rbenv is available and add bin to PATH
-
-    :param list current_paths: Current paths.
-
-    :rtype: list
-    """
-
-    user_home = os.path.expanduser("~")
-    rbenv_path = os.path.join(user_home, '.rbenv/bin')
-
-    if os.path.exists(rbenv_path):
-        current_paths = remove_path_from_current_paths(rbenv_path, current_paths)
-        current_paths.append(rbenv_path)
-
+    current_paths = remove_path_from_current_paths('/usr/local/sbin', current_paths)
+    current_paths.insert(0, '/usr/local/sbin')
     return current_paths
 
 

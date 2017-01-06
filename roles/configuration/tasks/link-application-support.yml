@@ -1,0 +1,11 @@
+---
+  - name: Link app profiles
+    file:
+      src: "~/Dropbox/system/Library/{{ item }}"
+      dest: "~/Library/Application Support/{{ item }}"
+      state: link
+    with_items:
+      - "Adium 2.0"
+      - "Alfred 3"
+      - "Sublime Text 3"
+    when: dropbox_synced_stat.stat.exists is defined and dropbox_synced_stat.stat.exists == True
