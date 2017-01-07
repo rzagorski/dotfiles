@@ -8,7 +8,6 @@
       - aliases
       - bash_profile
       - bash_prompt
-      - functions
       - gitconfig
       - gitignore
       - jshintrc

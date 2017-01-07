@@ -9,3 +9,10 @@
       - "Alfred 3"
       - "Sublime Text 3"
     when: dropbox_synced_stat.stat.exists is defined and dropbox_synced_stat.stat.exists == True
+
+  - name: Link sublime projects
+    file:
+      src: "~/Dropbox/system/Sublime Projects/"
+      dest: "~/Sublime Projects"
+      state: link
+    when: dropbox_synced_stat.stat.exists is defined and dropbox_synced_stat.stat.exists == True

@@ -16,6 +16,7 @@
       - flux
       - google-chrome
       - google-chrome-canary
+      - google-featured-photos
       - hipchat
       - iterm2
       - istat-menus
@@ -29,6 +30,7 @@
       - sequel-pro
       - slack
       - spotify
+      - sublime-text
       - tomtom-mysports-connect
       - torbrowser
       - transmit
