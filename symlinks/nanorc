@@ -3,7 +3,6 @@ set tabsize 4
 set historylog
 set noconvert
 set smooth
-set mouse
 set nohelp
 set const
 
