@@ -1,10 +1,10 @@
 ---
-  - include: bash-symlinks.yml
-  - include: link-application-support.yml
-  - include: link-karabiner-configuration.yml
-  - include: link-pip-configuration.yml
-  - include: load-iterm2-configuration.yml
-  - include: load-moom-configuration.yml
+  # - include: bash-symlinks.yml
+  # - include: link-application-support.yml
+  # - include: link-karabiner-configuration.yml
+  # - include: link-pip-configuration.yml
+  # - include: load-iterm2-configuration.yml
+  # - include: load-moom-configuration.yml
 
   - name: Cleanup brew
     command: brew cleanup
