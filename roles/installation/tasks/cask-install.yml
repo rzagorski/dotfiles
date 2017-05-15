@@ -15,7 +15,6 @@
       - google-chrome-canary
       # - google-featured-photos
       - slack
-      - hipchat
       - skype
       - iterm2
       - istat-menus
@@ -32,3 +31,5 @@
       - phpstorm
       - filezilla
       - 1password
+      - tunnelblick
+      - cyberduck
