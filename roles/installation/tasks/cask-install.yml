@@ -30,6 +30,7 @@
       - virtualbox
       - phpstorm
       - filezilla
-      - 1password
+      - lastpass
       - tunnelblick
       - cyberduck
+      - osxfuse
