@@ -25,13 +25,6 @@ My dotfiles for quick macOS/OS X.
     $(python -m site --user-base)/bin/ansible-playbook --ask-become-pass -i local.hosts playbook.yml
     ```
 
-1. Cleanup:
-
-    ```
-    /usr/local/bin/pip list --user --format=freeze | xargs pip uninstall -y $1
-    sudo /usr/local/bin/pip uninstall -y pip
-    ```
-
 # License
 
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).

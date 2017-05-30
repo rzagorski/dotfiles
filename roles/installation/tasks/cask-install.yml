@@ -9,16 +9,13 @@
       - cleanapp
       - controlplane
       - dropbox
-      # - firefox
-      # - firefoxdeveloperedition
       - google-chrome
       - google-chrome-canary
-      # - google-featured-photos
       - slack
       - skype
+      - skype-for-business
       - iterm2
       - istat-menus
-      # - karabiner-elements
       - kobo
       - macdown
       - atom
@@ -34,3 +31,4 @@
       - tunnelblick
       - cyberduck
       - osxfuse
+      - insomnia

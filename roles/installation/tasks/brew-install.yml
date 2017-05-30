@@ -4,21 +4,13 @@
       name: "{{ item }}"
       state: latest
     with_items:
-      # - autojump
       - chromedriver
-      # - csshx
-      # - ctags
-      # - dialog
       - git
       - git-extras
       - htop
       - icdiff
       - jq
-      # - launchctl-completion
-      # - mas # Mac App Store command line interface
-      # - mobile-shell
       - mtr
-      # - multitail
       - nano
       - ncdu
       - node
@@ -38,7 +30,6 @@
       - docker-completion
       - docker-compose-completion
       - docker-machine-completion
-      # - trash
       - tree
       - watch
       - wget
