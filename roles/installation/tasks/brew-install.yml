@@ -18,7 +18,6 @@
       - pngquant
       - python
       - python3
-      - sshfs
       - rbenv
       - ruby-build
       - vagrant-completion
