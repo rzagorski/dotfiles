@@ -1,0 +1,30 @@
+---
+  - name: Install brew packages
+    homebrew:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - chromedriver
+      - git
+      - git-extras
+      - htop
+      - mtr
+      - nano
+      - ncdu
+      - node
+      - packer
+      - packer-completion
+      - php71
+      - php-code-sniffer
+      - pngquant
+      - python
+      - python3
+      - sshfs
+      - rbenv
+      - ruby-build
+      - vagrant-completion
+      - docker-completion
+      - docker-compose-completion
+      - docker-machine-completion
+      - tree
+      - wget

@@ -1,0 +1,28 @@
+---
+  - name: Install from cask
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    ignore_errors: yes
+    with_items:
+      - alfred
+      - dropbox
+      - google-chrome
+      - slack
+      - skype
+      - skype-for-business
+      - atom
+      - sequel-pro
+      - vagrant
+      - vlc
+      - virtualbox
+      - virtualbox-extension-pack
+      - phpstorm
+      - filezilla
+      - tunnelblick
+      - cyberduck
+      - osxfuse
+      - insomnia
+      - spotify
+      - lastpass
+      - the-unarchiver
