@@ -7,7 +7,6 @@
       - chromedriver
       - git
       - git-extras
-      - htop
       - mtr
       - nano
       - ncdu

@@ -1,7 +1,7 @@
 ---
-  - include: install-homebrew.yml
-  - include: brew-tap.yml
-  - include: brew-install.yml
-  - include: cask-install.yml
-  - include: npm-install.yml
-  - include: pip-install.yml
+  - include_tasks: install-homebrew.yml
+  - include_tasks: brew-tap.yml
+  - include_tasks: brew-install.yml
+  - include_tasks: cask-install.yml
+  - include_tasks: npm-install.yml
+  - include_tasks: pip-install.yml
