@@ -6,29 +6,27 @@
     ignore_errors: yes
     with_items:
       - alfred
-      - cleanapp
-      - controlplane
       - dropbox
       - google-chrome
-      - google-chrome-canary
       - slack
       - skype
       - skype-for-business
       - iterm2
-      - istat-menus
-      - kobo
-      - macdown
       - atom
       - sequel-pro
       - spotify
-      - torbrowser
       - vagrant
       - vlc
       - virtualbox
       - phpstorm
       - filezilla
       - lastpass
+      - virtualbox
+      - virtualbox-extension-pack
+      - filezilla
       - tunnelblick
       - cyberduck
-      - osxfuse
       - insomnia
+      - spotify
+      - lastpass
+      - the-unarchiver
